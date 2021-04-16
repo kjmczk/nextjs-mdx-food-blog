@@ -10,6 +10,7 @@ import Ingredients from '../../components/Ingredients';
 import Layout from '../../components/Layout';
 import Thumbnail from '../../components/Thumbnail';
 import { IPost } from '../../types/post';
+import { SITE_URL } from '../../utils/constants';
 import { getPost, getAllPosts } from '../../utils/mdxUtils';
 
 type Props = {
@@ -25,7 +26,6 @@ const components = {
   // It also works with dynamically-imported components, which is especially
   // useful for conditionally loading components for certain routes.
   // See the notes in README.md for more details.
-  Head,
   Ingredients,
   Directions,
   Tips: dynamic(() => import('../../components/Tips')),
@@ -34,8 +34,24 @@ const components = {
 const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
   const content = hydrate(source, { components });
 
+  const ogImage = SITE_URL + frontMatter.thumbnail;
+
   return (
-    <Layout>
+    <Layout pageTitle={frontMatter.title}>
+      <Head>
+        <meta
+          name="description"
+          content={frontMatter.description}
+          key="description"
+        />
+        <meta
+          property="og:description"
+          content={frontMatter.description}
+          key="ogDescription"
+        />
+        <meta property="og:image" content={ogImage} key="ogImage" />
+      </Head>
+
       <article className="prose prose-green">
         <div className="mb-4">
           <Thumbnail title={frontMatter.title} src={frontMatter.thumbnail} />
