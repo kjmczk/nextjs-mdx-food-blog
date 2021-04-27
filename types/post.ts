@@ -8,5 +8,4 @@ export interface IPost {
   ingredients: string[];
   directions: string[];
   tips: string[];
-  content: string;
 }
