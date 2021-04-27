@@ -15,7 +15,7 @@ import { getPost, getAllPosts } from '../../utils/mdxUtils';
 
 type Props = {
   source: MdxRemote.Source;
-  frontMatter: Omit<IPost, 'slug' | 'content'>;
+  frontMatter: Omit<IPost, 'slug'>;
 };
 
 // Custom components/renderers to pass to MDX.
@@ -76,11 +76,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const mdxSource = await renderToString(content, {
     components,
-    // Optionally pass remark/rehype plugins
-    mdxOptions: {
-      remarkPlugins: [],
-      rehypePlugins: [],
-    },
     scope: data,
   });
 
