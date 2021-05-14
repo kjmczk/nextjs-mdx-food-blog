@@ -1,9 +1,8 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import hydrate from 'next-mdx-remote/hydrate';
-import renderToString from 'next-mdx-remote/render-to-string';
-import { MdxRemote } from 'next-mdx-remote/types';
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 import Directions from '../../components/Directions';
 import Ingredients from '../../components/Ingredients';
@@ -14,26 +13,17 @@ import { SITE_URL } from '../../utils/constants';
 import { getPost, getAllPosts } from '../../utils/mdxUtils';
 
 type Props = {
-  source: MdxRemote.Source;
+  source: MDXRemoteSerializeResult;
   frontMatter: Omit<IPost, 'slug'>;
 };
 
-// Custom components/renderers to pass to MDX.
-// Since the MDX files aren't loaded by webpack, they have no knowledge of how
-// to handle import statements. Instead, you must include components in scope
-// here.
 const components = {
-  // It also works with dynamically-imported components, which is especially
-  // useful for conditionally loading components for certain routes.
-  // See the notes in README.md for more details.
   Ingredients,
   Directions,
   Tips: dynamic(() => import('../../components/Tips')),
 };
 
 const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
-  const content = hydrate(source, { components });
-
   const ogImage = SITE_URL + frontMatter.thumbnail;
 
   return (
@@ -63,7 +53,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
 
         <p>{frontMatter.description}</p>
 
-        <div>{content}</div>
+        <MDXRemote {...source} components={components} />
       </article>
     </Layout>
   );
@@ -74,10 +64,7 @@ export default PostPage;
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { content, data } = getPost(params?.slug as string);
 
-  const mdxSource = await renderToString(content, {
-    components,
-    scope: data,
-  });
+  const mdxSource = await serialize(content, { scope: data });
 
   return {
     props: {
