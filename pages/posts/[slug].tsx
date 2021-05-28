@@ -42,7 +42,7 @@ const PostPage: React.FC<Props> = ({ source, frontMatter }: Props) => {
         <meta property="og:image" content={ogImage} key="ogImage" />
       </Head>
 
-      <article className="prose prose-green">
+      <article className="prose prose-green dark:prose-dark">
         <div className="mb-4">
           <Thumbnail title={frontMatter.title} src={frontMatter.thumbnail} />
         </div>
