@@ -38,7 +38,7 @@ const Index: React.FC<Props> = ({ posts }: Props) => {
               </Link>
             </h2>
 
-            <p>{post.description}</p>
+            <p className="dark:text-gray-300">{post.description}</p>
           </div>
         ))}
       </div>
