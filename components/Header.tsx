@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import ThemeSwitch from './theme-switch';
+import ThemeSwitch from './ThemeSwitch';
 import { SITE_NAME } from '../utils/constants';
 
 const Header: React.FC = () => {
