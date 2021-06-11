@@ -1,11 +1,11 @@
-type Props = {
-  directions: string[];
-};
+import { useMdxComponentsContext } from '../context/MdxComponents';
 
-const Directions: React.FC<Props> = ({ directions }: Props) => {
+const Directions: React.FC = () => {
+  const { lang, directions } = useMdxComponentsContext();
+
   return (
     <>
-      <h2>Directions</h2>
+      <h2>{lang === 'ja' ? '作り方' : 'Directions'}</h2>
       <ol>
         {directions.map((direction, index) => (
           <li key={index}>{direction}</li>
