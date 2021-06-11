@@ -1,4 +1,4 @@
-# NextJS MDX Food Blog (simple)
+# NextJS MDX Food Blog (with-i18n)
 
 This project is built with [Next.js](https://nextjs.org/), [MDX](https://mdxjs.com/), [Tailwind CSS](https://tailwindcss.com/), and [TypeScript](https://www.typescriptlang.org/).
 
