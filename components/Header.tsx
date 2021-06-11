@@ -1,17 +1,20 @@
-import Link from 'next/link';
-
-import ThemeSwitch from './theme-switch';
+import LangMenu from './LangMenu';
+import NextLink from './NextLink';
+import ThemeSwitch from './ThemeSwitch';
 import { SITE_NAME } from '../utils/constants';
 
 const Header: React.FC = () => {
   return (
     <header className="py-2">
       <div className="flex justify-between items-center">
-        <Link href="/">
-          <a className="text-2xl font-bold text-green-500">{SITE_NAME}</a>
-        </Link>
+        <NextLink href="/" className="text-2xl font-bold text-green-500">
+          {SITE_NAME}
+        </NextLink>
 
-        <ThemeSwitch />
+        <div className="flex items-center space-x-4">
+          <ThemeSwitch />
+          <LangMenu />
+        </div>
       </div>
     </header>
   );

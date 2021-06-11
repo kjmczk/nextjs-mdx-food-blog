@@ -15,26 +15,37 @@ type Post = {
 
 const POSTS_PATH = join(process.cwd(), '_posts');
 
-function getPostFilePaths(): string[] {
+export function parseLocale(locale?: string): 'ja' | 'en' {
+  return locale === 'ja' ? 'ja' : 'en';
+}
+
+function getPostFilePaths(locale?: string): string[] {
+  const lang = parseLocale(locale);
+
   return (
     fs
-      .readdirSync(POSTS_PATH)
+      .readdirSync(join(POSTS_PATH, `${lang}`))
       // Only include md(x) files
       .filter((path) => /\.mdx?$/.test(path))
   );
 }
 
-export function getPost(slug: string): Post {
-  const fullPath = join(POSTS_PATH, `${slug}.mdx`);
+export function getPost(slug: string, locale?: string): Post {
+  const lang = parseLocale(locale);
+  const fullPath = join(POSTS_PATH, `${lang}`, `${slug}.mdx`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
 
   return { data, content };
 }
 
-export function getPostItems(filePath: string, fields: string[] = []): Items {
+export function getPostItems(
+  filePath: string,
+  fields: string[] = [],
+  locale?: string
+): Items {
   const slug = filePath.replace(/\.mdx?$/, '');
-  const { data, content } = getPost(slug);
+  const { data, content } = getPost(slug, locale);
 
   const items: Items = {};
 
@@ -55,10 +66,10 @@ export function getPostItems(filePath: string, fields: string[] = []): Items {
   return items;
 }
 
-export function getAllPosts(fields: string[] = []): Items[] {
+export function getAllPosts(fields: string[] = [], locale?: string): Items[] {
   const filePaths = getPostFilePaths();
   const posts = filePaths
-    .map((filePath) => getPostItems(filePath, fields))
+    .map((filePath) => getPostItems(filePath, fields, locale))
     // sort posts by date in descending order
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
   return posts;
