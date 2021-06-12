@@ -13,7 +13,7 @@ const LangMenu: React.FC = () => {
         {({ open }) => (
           <>
             <span className="rounded-md shadow-sm">
-              <Menu.Button className="inline-flex justify-center w-full px-3 py-1 text-sm font-medium leading-5 text-gray-700 dark:text-gray-100 transition duration-150 ease-in-out bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-500 rounded-md hover:text-gray-500 dark:hover:border-gray-400 focus:outline-none">
+              <Menu.Button className="inline-flex justify-center w-full px-3 py-1 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md hover:text-gray-500 focus:outline-none">
                 <span>{lang === 'ja' ? 'Japanese' : 'English'}</span>
                 <svg
                   className="w-5 h-5 ml-2 -mr-1"

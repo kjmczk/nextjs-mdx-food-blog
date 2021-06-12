@@ -9,8 +9,8 @@ type Props = {
 };
 
 const menuItemCss = {
-  activeTrue: 'bg-gray-100 dark:bg-green-500 text-gray-900 dark:text-gray-100',
-  activeFalse: 'text-gray-700 dark:text-gray-300',
+  activeTrue: 'bg-gray-100 text-gray-900',
+  activeFalse: 'text-gray-700',
   common:
     'flex justify-between w-full px-4 py-2 text-sm leading-5 text-left focus:outline-none cursor-pointer',
 };
