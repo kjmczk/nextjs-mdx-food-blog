@@ -1,8 +1,8 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 
 import Layout from '../components/Layout';
+import NextLink from '../components/NextLink';
 import Thumbnail from '../components/Thumbnail';
 import { IPost } from '../types/post';
 import { SITE_NAME } from '../utils/constants';
@@ -33,9 +33,7 @@ const Index: React.FC<Props> = ({ posts }: Props) => {
             </div>
 
             <h2 className="text-2xl font-bold mb-4">
-              <Link href={`/posts/${post.slug}`}>
-                <a>{post.title}</a>
-              </Link>
+              <NextLink href={`/posts/${post.slug}`}>{post.title}</NextLink>
             </h2>
 
             <p>{post.description}</p>

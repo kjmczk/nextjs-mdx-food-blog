@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
+import NextLink from './NextLink';
 
 type Props = {
   title: string;
@@ -19,9 +19,9 @@ const Thumbnail: React.FC<Props> = ({ title, src, slug }: Props) => {
   return (
     <>
       {slug ? (
-        <Link href={`/posts/${slug}`}>
-          <a aria-label={title}>{image}</a>
-        </Link>
+        <NextLink href={`/posts/${slug}`} aria-label={title}>
+          {image}
+        </NextLink>
       ) : (
         image
       )}
