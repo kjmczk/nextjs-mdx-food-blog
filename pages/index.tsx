@@ -4,7 +4,9 @@ import { useRouter } from 'next/router';
 
 import Layout from '../components/Layout';
 import NextLink from '../components/NextLink';
+import Pagination from '../components/Pagination';
 import Thumbnail from '../components/Thumbnail';
+import usePagination from '../hooks/usePagination';
 import { IPost } from '../types/post';
 import { SITE_NAME } from '../utils/constants';
 import { getAllPosts } from '../utils/mdxUtils';
@@ -17,6 +19,14 @@ const Index: React.FC<Props> = ({ posts }: Props) => {
   const router = useRouter();
   const lang = router.locale;
 
+  const { currentPage, currentData, maxPage, setElement } = usePagination(
+    posts,
+    2,
+    1.0
+  );
+
+  const currentPosts = currentData();
+
   return (
     <Layout>
       <Head>
@@ -28,7 +38,7 @@ const Index: React.FC<Props> = ({ posts }: Props) => {
       </h1>
 
       <div className="space-y-12">
-        {posts.map((post) => (
+        {currentPosts.map((post) => (
           <div key={post.slug}>
             <div className="mb-4">
               <Thumbnail
@@ -46,6 +56,12 @@ const Index: React.FC<Props> = ({ posts }: Props) => {
           </div>
         ))}
       </div>
+
+      <Pagination
+        currentPage={currentPage}
+        maxPage={maxPage}
+        setElement={setElement}
+      />
     </Layout>
   );
 };
