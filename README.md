@@ -4,7 +4,7 @@ This project is built with [Next.js](https://nextjs.org/), [MDX](https://mdxjs.c
 
 ## Demo
 
-You can try all the features at the following websites:
+You can try all the features at the following website:
 
 [https://www.jhrestaurant.com/](https://www.jhrestaurant.com/)
 
