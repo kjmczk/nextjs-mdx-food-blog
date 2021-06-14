@@ -2,6 +2,9 @@
 
 This project is built with [Next.js](https://nextjs.org/), [MDX](https://mdxjs.com/), [Tailwind CSS](https://tailwindcss.com/), and [TypeScript](https://www.typescriptlang.org/).
 
+- It is possible to search by multiple words
+- The caching process is automated by using [Husky](https://typicode.github.io/husky/#/) to create a Git hook
+
 ## Demo
 
 You can try the same search filter feature as this project at the following website:
