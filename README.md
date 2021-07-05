@@ -6,7 +6,7 @@ This project is built with [Next.js](https://nextjs.org/), [MDX](https://mdxjs.c
 
 You can try all the features at the following website:
 
-[https://www.jhrestaurant.com/](https://www.jhrestaurant.com/)
+[https://www.okantei.com/](https://www.okantei.com/)
 
 ## Branches
 
