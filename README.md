@@ -2,12 +2,6 @@
 
 This project is built with [Next.js](https://nextjs.org/), [MDX](https://mdxjs.com/), [Tailwind CSS](https://tailwindcss.com/), and [TypeScript](https://www.typescriptlang.org/).
 
-## Demo
-
-You can try all the features at the following website:
-
-[https://okantei.vercel.app](https://okantei.vercel.app)
-
 ## Branches
 
 - [main](https://github.com/kjmczk/nextjs-mdx-food-blog) - Full features
